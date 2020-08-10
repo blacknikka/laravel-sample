@@ -14,13 +14,14 @@ class PlayingController extends Controller
      */
     public function show(Request $request)
     {
+        // dd($request->session());
         if ($request->session()->has('key')) {
+            // $request->session()->regenerate();
             $data = $request->session()->all();
             var_dump($data);
             echo 'you have a session' . PHP_EOL;
             $value = $request->session()->get('key');
         } else {
-            $request->session()->regenerate();
             $data = $request->session()->all();
             var_dump($data);
             $request->session()->put('key', 'value');
