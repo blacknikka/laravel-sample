@@ -29,6 +29,10 @@ services:
       - MYSQL_PASSWORD=${DB_PASS}
       - MYSQL_ROOT_PASSWORD=${DB_PASS}
       - TZ=${TZ}
+  redis:
+    image: "redis:6.0.6"
+    volumes:
+      - "./redis/data:/data"
   web:
     image: nginx:1.19-alpine
     depends_on:
