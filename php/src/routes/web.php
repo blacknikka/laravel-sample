@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/me', 'PlayingController@show');
+
+Route::get('/info', function() {
+    return phpinfo();
+});
