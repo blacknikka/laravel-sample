@@ -3,6 +3,7 @@
 namespace packages\Domain\Domain\User;
 
 use packages\Domain\Domain\Account\AccountId;
+use Illuminate\Support\Str;
 
 class User
 {
@@ -21,10 +22,16 @@ class User
      * @param AccountId $accountId
      * @param string $name
      */
-    public function __construct(UserId $id, AccountId $accountId)
+    public function __construct(UserId $id, AccountId $accountId = null)
     {
         $this->id = $id;
-        $this->accountId = $accountId;
+
+        if ($accountId === null) {
+            $accountIdStr = Str::random(40);
+            $this->accountId = new AccountId($accountIdStr);
+        } else {
+            $this->accountId = $accountId;
+        }
     }
 
     /**
