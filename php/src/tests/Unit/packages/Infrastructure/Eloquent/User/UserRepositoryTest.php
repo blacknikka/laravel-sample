@@ -5,7 +5,7 @@ namespace Tests\Unit\packages\Infrastructure\Eloquent\User;
 use Illuminate\Support\Facades\Artisan;
 // use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
-use packages\Infrastructure\User\UserRepository;
+use packages\Infrastructure\Eloquent\User\UserRepository;
 use packages\Domain\Domain\User\User;
 use packages\Domain\Domain\User\UserId;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace packages\Infrastructure\User;
+namespace packages\Infrastructure\Eloquent\User;
 
 use packages\Domain\Domain\User\User;
 use packages\Domain\Domain\User\UserId;
