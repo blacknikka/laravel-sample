@@ -15,18 +15,5 @@ interface AccountRepositoryInterface
      * @param AccountId $id
      * @return Account
      */
-    public function find(AccountId $id);
-
-    /**
-     * @param AccountId $id
-     * @return void
-     */
-    public function add(int $value);
-
-    /**
-     * @param AccountId $id
-     * @return void
-     */
-    public function use(int $value);
-
+    public function find(AccountId $id): Account;
 }
