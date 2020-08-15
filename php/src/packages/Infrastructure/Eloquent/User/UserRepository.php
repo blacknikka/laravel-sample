@@ -61,6 +61,24 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
+    /**
+     * update game state
+     *
+     * @param UserId $id
+     * @param State $state
+     * @return void
+     */
+    public function updateGameState(UserId $id, State $state): void
+    {
+        UserEloquent::where([
+            'id' => $id->getValue()
+            ])
+            ->update([
+                'state' => $state->getState(),
+                'counter' => $state->getCounter(),
+            ]);
+    }
+
     private function createUserFromEloquent(UserEloquent $user): User
     {
         return new User(
