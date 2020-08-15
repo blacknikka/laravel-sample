@@ -5,7 +5,7 @@ namespace Tests\Unit\packages\Domain\Domain\Game;
 use PHPUnit\Framework\TestCase;
 use packages\Domain\Domain\Game\Game;
 
-class PlayDataTest extends TestCase
+class GameTest extends TestCase
 {
     /**
      * @test
