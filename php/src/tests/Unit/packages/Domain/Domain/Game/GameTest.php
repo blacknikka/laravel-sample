@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\packages\Domain\Domain\Game;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use packages\Domain\Domain\Game\Game;
 

@@ -19,9 +19,13 @@ class Game
     /**
      * Game
      */
-    public function __construct()
+    public function __construct(State $state = null)
     {
-        $this->state = new State();
+        if (is_null($state)) {
+            $this->state = new State();
+        } else {
+            $this->state = $state;
+        }
     }
 
     /**

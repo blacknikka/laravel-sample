@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\packages\Domain\Domain\State;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use packages\Domain\Domain\Game\State\State;
 use packages\Domain\Domain\Game\State\StateStatics;
@@ -15,6 +16,17 @@ class StateTest extends TestCase
     {
         $state = new State();
         $this->assertTrue($state->isState(StateStatics::STATE_INIT));
+    }
+
+
+    /**
+     * @test
+     */
+    public function Stateのコンストラクタ異常系()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new State("");
     }
 
     /**
