@@ -2,6 +2,8 @@
 
 namespace packages\Domain\Domain\User;
 
+use packages\Domain\Domain\Token\Token;
+use packages\Domain\Domain\User\User;
 
 interface UserRepositoryInterface
 {
@@ -16,4 +18,10 @@ interface UserRepositoryInterface
      * @return User
      */
     public function find(UserId $id);
+
+    /**
+     * @param Token
+     * @return User
+     */
+    public function findByToken(Token $token): ?User;
 }
