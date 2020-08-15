@@ -2,6 +2,7 @@
 
 namespace packages\Domain\Domain\Game\State;
 
+use InvalidArgumentException;
 use packages\Domain\Domain\Game\State\StateStatics;
 
 class State
@@ -20,9 +21,13 @@ class State
     /**
      * Random
      */
-    public function __construct()
+    public function __construct(string $state = StateStatics::STATE_INIT)
     {
-        $this->state = StateStatics::STATE_INIT;
+        if (!StateStatics::isValid($state)) {
+            throw new InvalidArgumentException("state is not valid");
+        }
+
+        $this->state = $state;
         $this->counter = 0;
     }
 

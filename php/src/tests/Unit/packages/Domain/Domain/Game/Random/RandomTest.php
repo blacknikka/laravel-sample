@@ -28,27 +28,10 @@ class RandomTest extends TestCase
     public function table_random正常系()
     {
         return [
-            [$this->getInitState(), 0, "resultA", 0,],
-            [$this->getInitState(), 501, "resultB", 100,],
-            [$this->getAnotherState(), 200, "resultA", 0,],
-            [$this->getAnotherState(), 201, "resultC", 150,],
+            [new State(), 0, "resultA", 0,],
+            [new State(), 501, "resultB", 100,],
+            [new State(StateStatics::STATE_ANOTHER), 200, "resultA", 0,],
+            [new State(StateStatics::STATE_ANOTHER), 201, "resultC", 150,],
         ];
-    }
-
-    private function getInitState(): State
-    {
-        return new State();
-    }
-
-    private function getAnotherState(): State
-    {
-        $state = new State();
-        $state->PlayAndTransitState();
-        $state->PlayAndTransitState();
-        $state->PlayAndTransitState();
-        $state->PlayAndTransitState();
-        $state->PlayAndTransitState();
-
-        return $state;
     }
 }
