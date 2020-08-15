@@ -12,5 +12,5 @@ class UserEloquent extends Model
     protected $table = 'users';
     public $incrementing = false;
 
-    protected $fillable = ['id', 'account_id', 'token'];
+    protected $fillable = ['id', 'account_id', 'token', 'state'];
 }
