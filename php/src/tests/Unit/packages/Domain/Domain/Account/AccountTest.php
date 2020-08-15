@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use packages\Domain\Domain\Account\AccountId;
 use packages\Domain\Domain\Account\Account;
 use Exception;
+use packages\Domain\Domain\Account\AccountStatics;
 
 class AccountTest extends TestCase
 {
@@ -27,7 +28,7 @@ class AccountTest extends TestCase
     {
         $account = new Account($this->accountId);
         $this->assertEquals($account->getId()->getValue(), self::AccountIdStr);
-        $this->assertEquals($account->getBalance(), 0);
+        $this->assertEquals($account->getBalance(), AccountStatics::DEFAULT_BALANCE_VALUE);
     }
 
     /**

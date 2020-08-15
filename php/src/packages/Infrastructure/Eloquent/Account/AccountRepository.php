@@ -33,4 +33,21 @@ class AccountRepository implements AccountRepositoryInterface
 
         return new Account($id, $account->balance);
     }
+
+    /**
+     * update balance by ID
+     *
+     * @param AccountId $id
+     * @param integer $balance
+     * @return void
+     */
+    public function updateBalance(AccountId $id, int $balance): void
+    {
+        AccountEloquent::where([
+            'id' => $id->getValue()
+            ])
+            ->update([
+                'balance' => $balance,
+            ]);
+    }
 }

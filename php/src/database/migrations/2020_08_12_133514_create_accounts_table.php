@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use packages\Domain\Domain\Account\AccountStatics;
 
 class CreateAccountsTable extends Migration
 {
@@ -15,7 +16,7 @@ class CreateAccountsTable extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->string('id');
-            $table->unsignedBigInteger('balance')->default(0);
+            $table->unsignedBigInteger('balance')->default(AccountStatics::DEFAULT_BALANCE_VALUE);
             $table->timestamps();
 
             $table->primary('id');
