@@ -3,7 +3,6 @@
 namespace Tests\Unit\packages\Domain\Domain\State;
 
 use PHPUnit\Framework\TestCase;
-use packages\Domain\Domain\Game\State\State;
 use packages\Domain\Domain\Game\State\StateStatics;
 
 class StateStaticsTest extends TestCase
@@ -24,5 +23,13 @@ class StateStaticsTest extends TestCase
     {
         $this->assertFalse(StateStatics::isValid("hogehoge"));
         $this->assertFalse(StateStatics::isValid(""));
+    }
+
+    /**
+     * @test
+     */
+    public function getStates()
+    {
+        $this->assertSame(StateStatics::getStates(), [StateStatics::STATE_INIT, StateStatics::STATE_ANOTHER]);
     }
 }
