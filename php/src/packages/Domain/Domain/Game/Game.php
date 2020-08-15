@@ -29,6 +29,14 @@ class Game
     }
 
     /**
+     * @return State
+     */
+    public function getState(): State
+    {
+        return $this->state;
+    }
+
+    /**
      * @return PlayData
      */
     public function play(): PlayData

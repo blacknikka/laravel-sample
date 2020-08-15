@@ -56,4 +56,24 @@ class State
             $this->state = $this->state === StateStatics::STATE_INIT ? StateStatics::STATE_ANOTHER : StateStatics::STATE_INIT;
         }
     }
+
+    /**
+     * get counter
+     *
+     * @return integer
+     */
+    public function getCounter(): int
+    {
+        return $this->counter;
+    }
+
+    /**
+     * get state
+     *
+     * @return string
+     */
+    public function getState(): string
+    {
+        return $this->state;
+    }
 }
