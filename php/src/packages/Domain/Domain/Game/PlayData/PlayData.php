@@ -12,7 +12,7 @@ class PlayData
     /**
      * Game
      */
-    public function __construct(string $result, string $score)
+    public function __construct(string $result, int $score)
     {
         $this->result = $result;
         $this->score = $score;
