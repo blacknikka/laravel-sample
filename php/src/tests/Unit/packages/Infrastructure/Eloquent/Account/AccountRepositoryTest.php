@@ -8,6 +8,7 @@ use Tests\TestCase;
 use packages\Infrastructure\Eloquent\Account\AccountRepository;
 use packages\Domain\Domain\Account\Account;
 use packages\Domain\Domain\Account\AccountId;
+use packages\Domain\Domain\Account\AccountStatics;
 
 class AccountRepositoryTest extends TestCase
 {
@@ -38,7 +39,7 @@ class AccountRepositoryTest extends TestCase
 
         $this->assertDatabaseHas('accounts', [
             'id' => $id,
-            'balance' => 0,
+            'balance' => AccountStatics::DEFAULT_BALANCE_VALUE,
         ]);
     }
 
@@ -53,7 +54,7 @@ class AccountRepositoryTest extends TestCase
 
         $this->assertDatabaseHas('accounts', [
             'id' => $id,
-            'balance' => 0,
+            'balance' => AccountStatics::DEFAULT_BALANCE_VALUE,
         ]);
 
         $account->addBalance(100);
@@ -61,8 +62,60 @@ class AccountRepositoryTest extends TestCase
 
         $this->assertDatabaseHas('accounts', [
             'id' => $id,
-            'balance' => 100,
+            'balance' => AccountStatics::DEFAULT_BALANCE_VALUE + 100,
         ]);
 
+    }
+
+    /**
+     * @test
+     */
+    public function updateBalance正常系()
+    {
+        $id = new AccountId(uniqid());
+        $account = new Account($id);
+        $this->sut->save($account);
+
+        // 前提条件を確認
+        $this->assertDatabaseHas('accounts', [
+            'id' => $id->getValue(),
+            'balance' => AccountStatics::DEFAULT_BALANCE_VALUE,
+        ]);
+
+        // update
+        $updatedValue = 7000;
+        $this->sut->updateBalance($id, $updatedValue);
+
+        // check
+        $this->assertDatabaseHas('accounts', [
+            'id' => $id->getValue(),
+            'balance' => $updatedValue,
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function updateBalance異常系()
+    {
+        $id = new AccountId(uniqid());
+        $account = new Account($id);
+        $this->sut->save($account);
+
+        // 前提条件を確認
+        $this->assertDatabaseHas('accounts', [
+            'id' => $id->getValue(),
+            'balance' => AccountStatics::DEFAULT_BALANCE_VALUE,
+        ]);
+
+        // update
+        $updatedValue = 7000;
+        $this->sut->updateBalance(new AccountId(""), $updatedValue);
+
+        // check (変わっていないことをチェック)
+        $this->assertDatabaseHas('accounts', [
+            'id' => $id->getValue(),
+            'balance' => AccountStatics::DEFAULT_BALANCE_VALUE,
+        ]);
     }
 }

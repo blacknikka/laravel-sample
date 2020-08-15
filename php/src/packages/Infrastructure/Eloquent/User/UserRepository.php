@@ -2,6 +2,7 @@
 
 namespace packages\Infrastructure\Eloquent\User;
 
+use Exception;
 use packages\Domain\Domain\User\User;
 use packages\Domain\Domain\User\UserId;
 use packages\Domain\Domain\Account\AccountId;
@@ -41,6 +42,50 @@ class UserRepository implements UserRepositoryInterface
     {
         $user = UserEloquent::find($id->getValue());
 
-        return new User($id, new AccountId($user->account_id), new Token($user->token), new Game(new State($user->state)));
+        return $this->createUserFromEloquent($user);
+    }
+
+    /**
+     * @param Token
+     * @return User
+     */
+    public function findByToken(Token $token): ?User
+    {
+        try {
+            $user = UserEloquent::where('token', $token->getToken())
+            ->firstOrFail();
+
+            return $this->createUserFromEloquent($user);
+        } catch (Exception $e) {
+            return null;
+        }
+    }
+
+    /**
+     * update game state
+     *
+     * @param UserId $id
+     * @param State $state
+     * @return void
+     */
+    public function updateGameState(UserId $id, State $state): void
+    {
+        UserEloquent::where([
+            'id' => $id->getValue()
+            ])
+            ->update([
+                'state' => $state->getState(),
+                'counter' => $state->getCounter(),
+            ]);
+    }
+
+    private function createUserFromEloquent(UserEloquent $user): User
+    {
+        return new User(
+            new UserId($user->id),
+            new AccountId($user->account_id),
+            new Token($user->token),
+            new Game(new State($user->state)
+        ));
     }
 }

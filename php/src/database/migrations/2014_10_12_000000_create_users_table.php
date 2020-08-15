@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('token')->nullable();
             $table->string('account_id');
             $table->string('state')->default(StateStatics::DEFAULT_STATE)->comment('game state');
-            $table->string('counter')->default(0)->comment('counter for something');
+            $table->unsignedBigInteger('counter')->default(0)->comment('counter for something');
             $table->timestamps();
 
             $table->primary(['id']);

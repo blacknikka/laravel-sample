@@ -3,6 +3,7 @@
 namespace packages\Domain\Domain\Account;
 
 use Exception;
+use packages\Domain\Domain\Account\AccountStatics;
 
 class Account
 {
@@ -20,7 +21,7 @@ class Account
      * @param AccountId $id
      * @param int $balance
      */
-    public function __construct(AccountId $id, int $balance = 0)
+    public function __construct(AccountId $id, int $balance = AccountStatics::DEFAULT_BALANCE_VALUE)
     {
         $this->id = $id;
 
