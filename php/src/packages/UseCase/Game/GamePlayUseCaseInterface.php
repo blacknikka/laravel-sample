@@ -2,16 +2,15 @@
 
 namespace packages\UseCase\Game;
 
-use packages\Domain\Domain\User\User;
-use packages\Domain\Domain\Game\PlayData\PlayData;
 use packages\Domain\Domain\Token\Token;
+use packages\Domain\Domain\Game\PlayResult\PlayResult;
 
 interface GamePlayUseCaseInterface
 {
     /**
      * @param Token
      *
-     * @return PlayData
+     * @return PlayResult
      */
-    public function play(Token $token): PlayData;
+    public function play(Token $token): PlayResult;
 }
