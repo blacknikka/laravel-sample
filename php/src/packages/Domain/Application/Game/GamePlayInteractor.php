@@ -8,12 +8,14 @@ use packages\UseCase\Game\GamePlayUseCaseInterface;
 use packages\Domain\Domain\User\UserRepositoryInterface;
 use packages\Domain\Domain\Token\Token;
 use packages\Domain\Domain\Game\Game;
+use packages\Domain\Domain\Game\Play\GamePlayInterface;
 use packages\Domain\Domain\Game\PlayResult\PlayResult;
 
 class GamePlayInteractor implements GamePlayUseCaseInterface
 {
     private $userRepositoryInterface;
     private $accountRepositoryInterface;
+    private $gamePlayInterface;
 
     /**
      * create
@@ -22,11 +24,13 @@ class GamePlayInteractor implements GamePlayUseCaseInterface
      */
     public function __construct(
         UserRepositoryInterface $userRepositoryInterface,
-        AccountRepositoryInterface $accountRepositoryInterface
+        AccountRepositoryInterface $accountRepositoryInterface,
+        GamePlayInterface $gamePlayInterface
     )
     {
         $this->userRepositoryInterface = $userRepositoryInterface;
         $this->accountRepositoryInterface = $accountRepositoryInterface;
+        $this->gamePlayInterface = $gamePlayInterface;
     }
 
     /**
@@ -40,7 +44,10 @@ class GamePlayInteractor implements GamePlayUseCaseInterface
         $user = $this->userRepositoryInterface->findByToken($token);
 
         // create game instance.
-        $game = new Game($user->getGame()->getState());
+        $game = new Game(
+            $this->gamePlayInterface,
+            $user->getGame()->getState()
+        );
 
         // update game state.
         $this->userRepositoryInterface

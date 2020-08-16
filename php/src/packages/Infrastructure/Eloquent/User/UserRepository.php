@@ -6,7 +6,9 @@ use Exception;
 use packages\Domain\Domain\User\User;
 use packages\Domain\Domain\User\UserId;
 use packages\Domain\Domain\Account\AccountId;
+use packages\Domain\Domain\Account\AccountStatics;
 use packages\Domain\Domain\Game\Game;
+use packages\Domain\Domain\Game\Play\GamePlay;
 use packages\Domain\Domain\Game\State\State;
 use packages\Domain\Domain\Token\Token;
 use packages\Domain\Domain\User\UserRepositoryInterface;
@@ -23,7 +25,7 @@ class UserRepository implements UserRepositoryInterface
     {
         $account = AccountEloquent::create([
             'id' => $user->getAccountId()->getValue(),
-            'balance' => 0,
+            'balance' => AccountStatics::DEFAULT_BALANCE_VALUE,
         ]);
         UserEloquent::create([
             'id' => $user->getId()->getValue(),
@@ -85,7 +87,7 @@ class UserRepository implements UserRepositoryInterface
             new UserId($user->id),
             new AccountId($user->account_id),
             new Token($user->token),
-            new Game(new State($user->state)
+            new Game(new GamePlay(), new State($user->state)
         ));
     }
 }

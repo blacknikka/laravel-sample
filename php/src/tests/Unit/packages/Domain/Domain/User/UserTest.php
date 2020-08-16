@@ -10,6 +10,7 @@ use packages\Domain\Domain\Game\State\StateStatics;
 use packages\Domain\Domain\Token\Token;
 use packages\Domain\Domain\Token\TokenCreator;
 use packages\Domain\Domain\Game\Game;
+use packages\Domain\Domain\Game\Play\GamePlay;
 use packages\Domain\Domain\Game\State\State;
 
 class UserTest extends TestCase
@@ -85,7 +86,7 @@ class UserTest extends TestCase
     public function UserのGameの値が正しい_game指定()
     {
         $id = new UserId('id');
-        $game = new Game(new State(StateStatics::STATE_ANOTHER));
+        $game = new Game(new GamePlay(), new State(StateStatics::STATE_ANOTHER));
         $user = new User($id, null, null, $game);
 
         $this->assertTrue($user->getGame()->getState()->isState(StateStatics::STATE_ANOTHER));

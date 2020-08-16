@@ -6,6 +6,7 @@ use packages\Domain\Domain\Account\AccountId;
 use packages\Domain\Domain\Token\Token;
 use packages\Domain\Domain\Game\Game;
 use Illuminate\Support\Str;
+use packages\Domain\Domain\Game\Play\GamePlay;
 use packages\Domain\Domain\Token\TokenCreator;
 
 class User
@@ -61,7 +62,7 @@ class User
 
         // create a game state.
         if (is_null($game)) {
-            $this->game = new Game();
+            $this->game = new Game(new GamePlay());
         } else {
             $this->game = $game;
         }
