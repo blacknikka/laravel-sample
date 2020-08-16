@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
             \packages\Infrastructure\Eloquent\User\UserRepository::class
         );
         $this->app->bind(
-            \packages\Infrastructure\Account\AccountRepositoryInterface::class,
+            \packages\Domain\Domain\Account\AccountRepositoryInterface::class,
             \packages\Infrastructure\Eloquent\Account\AccountRepository::class
         );
     }

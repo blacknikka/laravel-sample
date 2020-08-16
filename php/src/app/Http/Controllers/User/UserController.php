@@ -30,6 +30,6 @@ class UserController extends Controller
             )
         );
 
-        return json_encode($viewModel->toArray());
+        return response()->json($viewModel->toArray());
     }
 }
