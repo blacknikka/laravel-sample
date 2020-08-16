@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Game;
 
 use App\Http\Controllers\Controller;
+use App\Http\Models\Game\Play\GamePlayViewModel;
 use packages\UseCase\Game\GamePlayUseCaseInterface;
 use packages\Domain\Domain\Token\Token;
 use App\Http\Requests\PlayGameRequest;
@@ -20,8 +21,9 @@ class GameController extends Controller
     {
         // play from token.
         $token = new Token($request->token);
-        $playData = $this->gamePlayUseCaseInterface->play($token);
+        $playResult = $this->gamePlayUseCaseInterface->play($token);
 
-        return json_encode([]);
+        $model = new GamePlayViewModel($playResult);
+        return response()->json($model->toArray());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Http\Models\User\Create;
+namespace Tests\Unit\Http\Models\User\Game;
 
 use PHPUnit\Framework\TestCase;
 use App\Http\Models\User\Create\UserCreateViewModel;

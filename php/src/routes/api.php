@@ -18,5 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/user/create', 'User\UserController@CreateUserAndAccount');
+Route::post('/play', 'Game\GameController@Play');
 
 Route::get('/me', 'PlayingController@show');
