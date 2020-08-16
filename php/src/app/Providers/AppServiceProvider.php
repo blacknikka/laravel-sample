@@ -32,6 +32,12 @@ class AppServiceProvider extends ServiceProvider
             \packages\Domain\Domain\Account\AccountRepositoryInterface::class,
             \packages\Infrastructure\Eloquent\Account\AccountRepository::class
         );
+
+        // domein
+        $this->app->bind(
+            \packages\Domain\Domain\Game\GameInterface::class,
+            \packages\Domain\Domain\Game\Game::class
+        );
     }
 
     /**

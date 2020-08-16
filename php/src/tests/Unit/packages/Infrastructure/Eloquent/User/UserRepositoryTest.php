@@ -11,6 +11,7 @@ use packages\Infrastructure\Eloquent\User\UserRepository;
 use packages\Domain\Domain\User\User;
 use packages\Domain\Domain\User\UserId;
 use Illuminate\Support\Str;
+use packages\Domain\Domain\Account\AccountStatics;
 use packages\Domain\Domain\Game\State\State;
 use packages\Domain\Domain\Game\State\StateStatics;
 
@@ -47,7 +48,7 @@ class UserRepositoryTest extends TestCase
 
         $this->assertDatabaseHas('accounts', [
             'id' => $user->getAccountId()->getValue(),
-            'balance' => 0,
+            'balance' => AccountStatics::DEFAULT_BALANCE_VALUE,
         ]);
     }
 
